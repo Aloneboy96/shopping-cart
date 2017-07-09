@@ -1,10 +1,22 @@
 var mongoose = require('mongoose');
 
 var productSchema = new mongoose.Schema({
-    imagePath: {type: String, required: true},
-    title: {type: String, required: true},
-    description: {type: String, required: true},
-    price: {type: Number, required: true}
+    imagePath: { type: String, required: true },
+    title: { type: String, required: true },
+    description: { type: String, required: true },
+    price: { type: Number, required: true }
 });
 
-exports.model = mongoose.model('Product', productSchema);
+var Product = mongoose.model('Product', productSchema);
+exports.Product = Product;
+
+exports.getProducts = function (callback) {
+    Product.find(function (err, products) {
+        if (err) {
+            callback([]);
+            return;
+        }
+        callback(products);
+    });
+}
+

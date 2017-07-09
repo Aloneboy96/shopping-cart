@@ -12,6 +12,9 @@ var index = require('./routes/index');
 var app = express();
 
 mongoose.connect('localhost:27017/shopping');
+//check connection
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
 
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
