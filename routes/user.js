@@ -7,5 +7,6 @@ var csrfProtection = csrf();
 router.use(csrfProtection);
 router.get('/signup', userController.displaySignUp);
 router.post('/signup', userController.signUp);
+router.get('/profile', userController.displayProfile);
 
 module.exports = router;
