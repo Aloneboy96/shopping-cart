@@ -14,6 +14,20 @@ exports.signUp = passport.authenticate('local.signup', {
     failureFlash: true
 })
 
+exports.displaySignIn = function (req, res, next) {
+    var messages = req.flash('error');
+    res.render('user/signin', {
+        csrfToken: req.csrfToken(),
+        messages: messages
+    });
+}
+
+exports.signIn = passport.authenticate('local.signin', {
+    successRedirect: '/user/profile',
+    failureRedirect: '/user/signin',
+    failureFlash: true
+})
+
 exports.displayProfile = function (req, res, next) {
     res.render('user/profile', {
         title: 'Profile'
