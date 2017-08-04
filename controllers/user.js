@@ -33,3 +33,26 @@ exports.displayProfile = function (req, res, next) {
         title: 'Profile'
     })
 }
+
+exports.isLoggedIn = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/');
+}
+
+exports.notLoggedIn = function (req, res, next) {
+    if (!req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/');
+}
+
+exports.directLogIn = function (req, res, next) {
+    next();
+}
+
+exports.logOut = function (req, res, next) {
+    req.logout();
+    res.redirect('/');
+}
