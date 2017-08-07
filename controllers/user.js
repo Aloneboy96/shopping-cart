@@ -3,6 +3,7 @@ var passport = require('passport');
 exports.displaySignUp = function (req, res, next) {
     var messages = req.flash('error');
     res.render('user/signup', {
+        title: 'Sign Up',
         csrfToken: req.csrfToken(),
         messages: messages
     });
@@ -17,6 +18,7 @@ exports.signUp = passport.authenticate('local.signup', {
 exports.displaySignIn = function (req, res, next) {
     var messages = req.flash('error');
     res.render('user/signin', {
+        title: 'Sign In',
         csrfToken: req.csrfToken(),
         messages: messages
     });
