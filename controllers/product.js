@@ -1,7 +1,10 @@
-var productModel = require('../models/product');
+var Product = require('../models/product').Product;
 
 exports.displayProductList = function (req, res, next) {
-    productModel.getProducts(function (products) {
+    Product.find(function (err, products) {
+        if (err)
+            products = [];
+
         var productsChunk = [];
         var chunkSize = 3;
 

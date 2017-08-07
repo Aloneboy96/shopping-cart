@@ -10,13 +10,3 @@ var productSchema = new mongoose.Schema({
 var Product = mongoose.model('Product', productSchema);
 exports.Product = Product;
 
-exports.getProducts = function (callback) {
-    Product.find(function (err, products) {
-        if (err) {
-            callback([]);
-            return;
-        }
-        callback(products);
-    });
-}
-
