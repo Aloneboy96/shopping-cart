@@ -18,7 +18,7 @@ var user = require('./routes/user');
 var app = express();
 
 var connectionString = 'mongodb://thong:MHPpUIOwKv6yti4t@thong-shard-00-00-9nvdr.mongodb.net:27017,thong-shard-00-01-9nvdr.mongodb.net:27017,thong-shard-00-02-9nvdr.mongodb.net:27017/shopping?ssl=true&replicaSet=thong-shard-0&authSource=admin';
-//connectionString =  'localhost:27017/shopping'; 
+//var connectionString =  'localhost:27017/shopping'; 
 mongoose.connect(connectionString);
 require('./config/passport');
 //check connection
