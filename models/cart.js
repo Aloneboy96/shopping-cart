@@ -14,6 +14,45 @@ exports.Cart = function Cart(oldCart) {
         this.totalPrice += storedItem.item.price;
     };
 
+    this.reduce = function (id) {
+        if (this.totalQuantity == 1) {
+            this.items = {};
+            this.totalQuantity = 0;
+            this.totalPrice = 0;
+            
+            return 0;
+        }
+        var storedItem = this.items[id];
+
+        this.totalQuantity--;
+        this.totalPrice -= storedItem.item.price;
+        if (storedItem.quantity == 1) {
+            delete this.items[id];
+            
+            return 1;
+        }
+        storedItem.quantity--;
+        storedItem.price -= storedItem.item.price;
+        
+        return 2;
+    };
+
+    this.remove = function (id) {
+        var storedItem = this.items[id];
+
+        this.totalQuantity -= storedItem.quantity;
+        if (!this.totalQuantity) {
+            this.items = {};
+            this.totalPrice = 0;
+
+            return false;
+        }
+        this.totalPrice -= storedItem.price;
+        delete this.items[id];
+
+        return true;
+    }
+
     this.generateArray = function () {
         var arr = [];
 
@@ -21,5 +60,6 @@ exports.Cart = function Cart(oldCart) {
             arr.push(this.items[id]);
 
         return arr;
-    }
+    };
 }
+

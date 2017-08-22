@@ -18,7 +18,11 @@
         <li>
           <a href="/shopping-cart">
             <i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart
+            {{#if session.cart.totalQuantity}}
             <span class="badge" id="cart-info">{{session.cart.totalQuantity}}</span>
+            {{else}}
+            <span class="badge" id="cart-info"></span>
+            {{/if}}
           </a>
         </li>
         <li class="dropdown">
